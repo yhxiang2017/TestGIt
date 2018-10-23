@@ -104,20 +104,61 @@ public class Array<E> {
         return data[index];
     }
 
+    /**
+     * 是否包含这个元素
+     * @param e
+     * @return
+     */
     public boolean contains(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e){
+            if (data[i].equals(e)){
                 return true;
             }
         }
         return false;
     }
 
-    public E get(E e) {
-        if (contains(e)){
-
+    /**
+     * 获取元素的下标
+     * @param e
+     * @return
+     */
+    public int getIndex(E e) {
+        for (int i = 0; i < size; i ++) {
+            if (data[i].equals(e))
+                return i;
         }
-        return null;
+        return -1;
+    }
+
+    /**
+     * 根据元素下标更新值
+     * @param index
+     * @param e
+     */
+    public void set(int index, E e) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("下标非法！");
+        }
+        data[index] = e;
+    }
+
+    /**
+     * 根据下标删除元素
+     * @param index
+     * @return
+     */
+    public E remove(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("下标非法！");
+        }
+
+        E ret = data[index];
+        for (int i = index; i < size; i++) {
+            data[i] = data[i + 1];
+        }
+        size --;
+        return ret;
     }
 
     @Override
