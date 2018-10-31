@@ -1,9 +1,6 @@
 package cn.xyh.io;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 public class TestInputStream {
 
@@ -19,7 +16,21 @@ public class TestInputStream {
     /**
      * 测试OutputStreamFile 写入
      */
-    public static void testOuputStreamWriterFile(){
+    public static void testOuputStreamWriterFile() throws IOException {
+
+        File file = new File("c:/test/d.txt");
+
+        //读取文件
+        FileInputStream fileInputStream = new FileInputStream(file);
+
+        byte[] bytes = new byte[(int) file.length()];
+
+        fileInputStream.read(bytes);
+
+        File newFile = new File("c:/test/e.txt");
+        FileOutputStream fileOutputStream = new FileOutputStream(newFile);
+
+        fileOutputStream.write(bytes);
 
     }
 
